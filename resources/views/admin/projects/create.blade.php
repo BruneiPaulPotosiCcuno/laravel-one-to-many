@@ -39,6 +39,17 @@
                         <textarea class="form-control" id="summary" name="summary" rows="10" placeholder="Inserisci un sommario del progetto"{{old('summary')}}></textarea>
                     </div>
 
+                    <div class="mb-3">
+                        <label class="form-label" for="type_id" >Tipo di Progetto</label>
+                        <select name="type_id" id="type_id" class="form-select">
+                            <option value="1">Seleziona un tipo</option>
+                            @foreach ($types as $type)
+                                <option value="{{ $type->id}}">{{ $type->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+
                     <div class="d-flex justify-content-center">
                         <button type="submit" class="btn btn-primary btn-lg">Crea Progetto</button>
                     </div>
