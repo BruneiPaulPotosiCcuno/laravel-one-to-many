@@ -47,7 +47,8 @@ class ProjectController extends Controller
             [
                 'name' => 'required|min:5|max:150|unique:projects,name',
                 'summary' => 'nullable|min:10',
-                'cover_image'=> 'nullable|image|max:256'
+                'cover_image'=> 'nullable|image|max:256',
+                'type_id' => 'nullable|exists:types,id'
             ]
         );
 
@@ -88,8 +89,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-
-        return view ('admin.projects.edit', compact('project'));
+        $types = Type::all();
+        return view ('admin.projects.edit', compact('project', 'types'));
     }
 
     /**
@@ -109,6 +110,11 @@ class ProjectController extends Controller
                     'max:250',
                     Rule::unique('projects')->ignore($project)
                 ],
+                'client_name' => 'nullable|min:5',
+                'summary' => 'nullable|min:20',
+                'cover_image' => 'nullable|image|max:250',
+                'type_id' => 'nullable|exists:types,id'
+
                 
 
             ]

@@ -41,6 +41,16 @@
                     </div>
 
                     <div class="mb-3">
+                        <label class="form-label" for="type_id" >Tipo di Progetto</label>
+                        <select name="type_id" id="type_id" class="form-select">
+                            <option value="1">Seleziona un tipo</option>
+                            @foreach ($types as $type)
+                                <option @selected($type->id == $project->type_id) value="{{ $type->id}}">{{ $type->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
                         <label for="client_name" class="form-label">Nome del Cliente</label>
                         <input type="text" class="form-control" id="client_name" name="client_name" value="{{ old('client_name', $project->client_name) }}">
                     </div>
